@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Рефинансирование долга МФО | 100 000 ₽ | Чистая КИ</title>
+    <!-- Google Fonts + Font Awesome 6 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* секции */
+        section {
+            padding: 64px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+        }
+        section:nth-child(1) { animation-delay: 0.05s; }
+        section:nth-child(2) { animation-delay: 0.15s; }
+        section:nth-child(3) { animation-delay: 0.25s; }
+        section:nth-child(4) { animation-delay: 0.35s; }
+        section:nth-child(5) { animation-delay: 0.45s; }
+        section:nth-child(6) { animation-delay: 0.55s; }
+        section:last-child {
+            border-bottom: none;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+            background: linear-gradient(135deg, #1E3C5C, #2B5F8A);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .section-sub {
+            font-size: 1rem;
+            color: #4a627a;
+            margin-bottom: 40px;
+            border-left: 4px solid #2b7a4b;
+            padding-left: 18px;
+            font-weight: 500;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px 24px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.2s;
+            border: 1px solid rgba(0,0,0,0.04);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: cardReveal 0.5s ease forwards;
+            animation-delay: calc(0.1s * var(--order, 0));
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 36px -12px rgba(0,0,0,0.15);
+            background: #fefefe;
+        }
+        @keyframes cardReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .card-icon {
+            font-size: 2.4rem;
+            margin-bottom: 20px;
+            color: #2b7a4b;
+            transition: transform 0.2s;
+        }
+        .card:hover .card-icon {
+            transform: scale(1.05);
+        }
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .badge {
+            background: #eef2f5;
+            border-radius: 100px;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1e5a7a;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .strength-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .strength-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-weight: 500;
+        }
+        .strength-item i {
+            font-size: 1.6rem;
+            color: #2b7a4b;
+        }
+
+        .highlight-green {
+            background: #e9f7ef;
+            border-left: 5px solid #2b7a4b;
+            padding: 16px 20px;
+            border-radius: 20px;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+        @media (max-width: 780px) {
+            .two-col {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: all 0.2s;
+        }
+        th {
+            background: #1e3c5c;
+            color: white;
+            padding: 14px 12px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+            font-weight: 500;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .calc-panel {
+            background: #ffffffdd;
+            backdrop-filter: blur(4px);
+            border-radius: 32px;
+            padding: 20px;
+            margin-top: 28px;
+            border: 1px solid #cbdde9;
+            transition: box-shadow 0.2s;
+        }
+        .calc-panel:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: flex-end;
+            margin-bottom: 20px;
+        }
+        .input-field {
+            flex: 1;
+            min-width: 140px;
+        }
+        .input-field label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #2c5a7a;
+        }
+        .input-field input {
+            width: 100%;
+            padding: 12px 12px;
+            border-radius: 20px;
+            border: 1px solid #cbd5e1;
+            font-weight: 500;
+            margin-top: 6px;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        .input-field input:focus {
+            outline: none;
+            border-color: #2b7a4b;
+            box-shadow: 0 0 0 3px rgba(43,122,75,0.1);
+        }
+        button {
+            background: #1e3c5c;
+            border: none;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        button:hover {
+            background: #2b5f8a;
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .comparison {
+            background: #fef9e3;
+            border-radius: 24px;
+            padding: 18px;
+            margin: 24px 0 0;
+            transition: all 0.2s;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #1e3c5c;
+            color: #1e3c5c;
+            margin-top: 20px;
+        }
+        .btn-outline:hover {
+            background: #1e3c5c;
+            color: white;
+            transform: scale(1.02);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e3c5c;
+        }
+        .text-small {
+            font-size: 0.85rem;
+            color: #4b5e77;
+        }
+        hr {
+            margin: 24px 0;
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, #cbdde9, transparent);
+        }
+        i.fa, i.far, i.fas {
+            margin-right: 4px;
+        }
+        @media (max-width: 560px) {
+            .container {
+                padding: 0 16px;
+            }
+            section {
+                padding: 48px 0;
+            }
+            td, th {
+                font-size: 0.75rem;
+                padding: 8px 6px;
+            }
+        }
+
+        /* анимация для кнопки и таблицы */
+        @keyframes gentlePulse {
+            0% { opacity: 0.9; }
+            100% { opacity: 1; }
+        }
+        .table-updated {
+            animation: gentlePulse 0.4s ease;
+        }
+        .payment-note {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            background: #e0f2e9;
+            padding: 8px 16px;
+            border-radius: 40px;
+            display: inline-block;
+            animation: fadeSlide 0.5s;
+        }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .product-rate {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #1e3c5c;
+            line-height: 1.2;
+        }
+        .product-bank {
+            font-weight: 700;
+            margin-top: 12px;
+            color: #2b7a4b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Hero / заголовок -->
+    <section style="padding-top: 48px; padding-bottom: 32px; border-bottom: none;">
+        <div style="text-align: center;">
+            <span class="badge" style="animation: fadeSlide 0.5s;"><i class="fas fa-chart-line"></i> Рефинансирование 2026</span>
+            <h1 style="font-size: 3rem; font-weight: 800; margin: 16px 0 12px; background: linear-gradient(135deg,#1E3C5C,#2B8C5E); -webkit-background-clip:text; background-clip:text; color:transparent;">Долг 100 000 ₽<br>перед МФО → банковский кредит</h1>
+            <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto; color: #2c4c6c;">Чистая кредитная история + стабильный доход = снижение ставки и ежемесячного платежа</p>
+        </div>
+    </section>
+
+    <!-- СИТУАЦИЯ: Проблема + закон -->
+    <section>
+        <div class="section-title">📋 Моя ситуация</div>
+        <div class="two-col">
+            <div class="card" style="--order:1;">
+                <div class="card-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <h3>Высокая процентная ставка МФО</h3>
+                <p>Задолженность 100 000 ₽ сформировалась по микрозаймам. Ставки МФО могут достигать <strong>сотен процентов годовых</strong>, создавая излишнюю финансовую нагрузку и риск «долговой спирали».</p>
+                <div class="highlight-green" style="margin-top: 16px;">
+                    <i class="fas fa-gavel"></i> <strong>Справка:</strong> согласно новым законам, с 2026 года ставка по микрозаймам не может превышать 100% годовых, но это всё равно значительно выше банковских ставок.
+                </div>
+            </div>
+            <div class="card" style="--order:2;">
+                <div class="card-icon"><i class="fas fa-bullseye"></i></div>
+                <h3>Цель и выгода</h3>
+                <p><strong>Цель:</strong> Получение средств для полного досрочного погашения всех обязательств в МФО.</p>
+                <p><strong>Выгода для меня:</strong> Снижение ежемесячного платежа и общей переплаты за счёт банковской ставки (12–20% годовых вместо 100%+).</p>
+                <hr>
+                <div><i class="fas fa-chart-simple"></i> Пример: переплата по МФО за 5 мес → ~41 600 ₽<br> 
+                <i class="fas fa-chart-line"></i> Переплата в банке за тот же срок → ≈3 900 ₽</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Сильные стороны заёмщика -->
+    <section>
+        <div class="section-title">✅ Твои сильные стороны как заемщика</div>
+        <div class="card-grid">
+            <div class="card" style="--order:1;">
+                <i class="fas fa-file-invoice-dollar card-icon"></i>
+                <h3>Чистая кредитная история</h3>
+                <p>Ключевое преимущество. Отсутствие просрочек и негатива — банки охотно работают с идеальной КИ или её отсутствием.</p>
+            </div>
+            <div class="card" style="--order:2;">
+                <i class="fas fa-briefcase card-icon"></i>
+                <h3>Постоянный доход</h3>
+                <p>Подтверждается документально. Стабильная занятость и белая зарплата гарантируют платёжеспособность.</p>
+            </div>
+            <div class="card" style="--order:3;">
+                <i class="fas fa-handshake card-icon"></i>
+                <h3>Долгосрочные отношения</h3>
+                <p>Намерение построить долгосрочное партнёрство с банком, дальнейшее использование банковских продуктов.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Что предлагаю / варианты продукта -->
+    <section>
+        <div class="section-title">🏦 Что я предлагаю банку (выбор продукта)</div>
+        <div class="two-col">
+            <div class="card" style="--order:1;">
+                <span class="badge"><i class="fas fa-hand-holding-usd"></i> Вариант А</span>
+                <h3>Кредит на рефинансирование долгов МФО</h3>
+                <p>Сумма: <strong>100 000 ₽</strong><br> Срок: 5–12 месяцев<br> Ставка: от 12% годовых (индивидуально)<br> Ежемесячный платёж ~ 20 000 ₽ (при сроке 5 мес)</p>
+                <div class="strength-item"><i class="fas fa-check-circle"></i> Досрочное погашение без комиссий</div>
+            </div>
+            <div class="card" style="--order:2;">
+                <span class="badge"><i class="fas fa-chart-line"></i> Вариант Б</span>
+                <h3>Кредитная карта / возобновляемая линия</h3>
+                <p>Льготный период до 100 дней, сумма 100 000 ₽, позволяет гибко погасить долг МФО и закрыть вопрос без переплат при грамотном планировании.</p>
+                <div class="strength-item"><i class="fas fa-lightbulb"></i> Предпочтительный вариант — целевой кредит на погашение микрозаймов</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ВЫГОДНЫЕ КРЕДИТНЫЕ ПРОДУКТЫ В РОССИИ (новый блок) -->
+    <section>
+        <div class="section-title">🏆 Выгодные кредитные продукты для рефинансирования (Россия, 2026)</div>
+        <div class="section-sub">Предложения банков с низкими ставками, быстрым одобрением и возможностью рефинансировать долги МФО</div>
+        <div class="card-grid">
+            <!-- СберБанк -->
+            <div class="card" style="--order:1;">
+                <div class="card-icon"><i class="fab fa-sberbank"></i></div>
+                <h3>СберБанк</h3>
+                <div class="product-rate">от 12,9%</div>
+                <p>Кредит на любые цели / рефинансирование. Сумма до 5 млн ₽, срок до 5 лет. Быстрое рассмотрение, одобрение при чистой КИ.</p>
+                <div class="product-bank"><i class="fas fa-check-circle"></i> Плюс: снижение ставки при оформлении страхования</div>
+            </div>
+            <!-- ВТБ -->
+            <div class="card" style="--order:2;">
+                <div class="card-icon"><i class="fas fa-university"></i></div>
+                <h3>ВТБ</h3>
+                <div class="product-rate">от 11,9%</div>
+                <p>Программа «Рефинансирование чужих кредитов» — погашение займов МФО, кредитных карт. Сумма от 30 000 до 3 млн ₽.</p>
+                <div class="product-bank"><i class="fas fa-star"></i> Акция: ставка ниже на 0,5% для зарплатных клиентов</div>
+            </div>
+            <!-- Т-Банк (Тинькофф) -->
+            <div class="card" style="--order:3;">
+                <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Т-Банк</h3>
+                <div class="product-rate">от 12,0%</div>
+                <p>Кредит наличными до 2 млн ₽. Онлайн-заявка, решение за 5 минут. Подходит для погашения долгов МФО.</p>
+                <div class="product-bank"><i class="fas fa-gem"></i> Бесплатное досрочное погашение</div>
+            </div>
+            <!-- Альфа-Банк -->
+            <div class="card" style="--order:4;">
+                <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Альфа-Банк</h3>
+                <div class="product-rate">от 11,5%</div>
+                <p>«Рефинансирование» — объединяет до 5 кредитов, включая микрозаймы. Сумма до 3 млн ₽, срок до 7 лет.</p>
+                <div class="product-bank"><i class="fas fa-bolt"></i> Одобрение за 1 минуту для клиентов с хорошей КИ</div>
+            </div>
+            <!-- Совкомбанк -->
+            <div class="card" style="--order:5;">
+                <div class="card-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                <h3>Совкомбанк</h3>
+                <div class="product-rate">от 12,5%</div>
+                <p>Программа «Рефинансирование» — специальные условия для заёмщиков с долгами в МФО. Сумма до 1 млн ₽.</p>
+                <div class="product-bank"><i class="fas fa-clock"></i> Рассмотрение до 2 часов</div>
+            </div>
+            <!-- Райффайзенбанк -->
+            <div class="card" style="--order:6;">
+                <div class="card-icon"><i class="fas fa-globe"></i></div>
+                <h3>Райффайзенбанк</h3>
+                <div class="product-rate">от 10,9%</div>
+                <p>Кредит на рефинансирование с фиксированной ставкой. Сумма от 50 000 ₽. Отличные условия при идеальной КИ.</p>
+                <div class="product-bank"><i class="fas fa-shield-alt"></i> Без комиссий за выдачу</div>
+            </div>
+        </div>
+        <div class="highlight-green" style="margin-top: 20px;">
+            <i class="fas fa-lightbulb"></i> <strong>Рекомендация:</strong> при чистой кредитной истории и доходе от 30 000 ₽/мес большинство банков одобрят ставку в диапазоне 11–16% годовых. Сравните предложения через кредитные брокеры или онлайн-сервисы (Банки.ру, Сравни.ру) для получения лучших условий.
+        </div>
+    </section>
+
+    <!-- Обоснование для банка: почему одобрить -->
+    <section>
+        <div class="section-title">📊 Обоснование для банка (Почему вам стоит одобрить?)</div>
+        <div class="card-grid">
+            <div class="card" style="--order:1;">
+                <i class="fas fa-calculator card-icon"></i>
+                <h3>Платёжеспособность</h3>
+                <p>Ежемесячный доход ~ 65 000 ₽ (подтверждён). Новый платёж не превышает 30–32% от дохода — ключевой критерий банковского риск-менеджмента.</p>
+                <div class="stat-number">~30%</div>
+                <div class="text-small">нагрузка после рефинансирования</div>
+            </div>
+            <div class="card" style="--order:2;">
+                <i class="fas fa-shield-alt card-icon"></i>
+                <h3>Надёжность</h3>
+                <p>Чистый кредитный рейтинг (нет просрочек, нет действующих крупных кредитов). Это снижает риски банка до минимума.</p>
+            </div>
+            <div class="card" style="--order:3;">
+                <i class="fas fa-chart-line card-icon"></i>
+                <h3>Перспектива</h3>
+                <p>Одобрив эту заявку, банк получает мотивированного и ответственного клиента на долгосрочной основе. Дальнейшее использование зарплатного проекта, вкладов, страховок.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- План погашения: КАЛЕНДАРЬ ПЛАТЕЖЕЙ при ~20к -->
+    <section>
+        <div class="section-title">📅 Мой план погашения при ~20 000 ₽ / месяц</div>
+        <div class="section-sub">Календарь платежей (аннуитет, банковская ставка 15% годовых, срок 5 месяцев — платёж ≈20 760 ₽, что близко к 20к)</div>
+        
+        <!-- динамическая таблица -->
+        <div id="amortization-table-container">
+            <div style="text-align: center; padding: 20px;">Загрузка графика...</div>
+        </div>
+        
+        <!-- Интерактивный калькулятор -->
+        <div class="calc-panel">
+            <h4 style="margin-bottom: 12px;"><i class="fas fa-sliders-h"></i> Интерактивный калькулятор (настройте параметры)</h4>
+            <div class="input-group">
+                <div class="input-field">
+                    <label>Сумма кредита (₽)</label>
+                    <input type="number" id="loanAmount" value="100000" step="5000">
+                </div>
+                <div class="input-field">
+                    <label>Годовая ставка (%)</label>
+                    <input type="number" id="interestRate" value="15" step="0.5">
+                </div>
+                <div class="input-field">
+                    <label>Срок (месяцев)</label>
+                    <input type="number" id="loanTerm" value="5" step="1">
+                </div>
+                <div>
+                    <button id="recalcBtn"><i class="fas fa-sync-alt"></i> Обновить график</button>
+                </div>
+            </div>
+            <div class="text-small"><i class="fas fa-info-circle"></i> Платёж ~20 000 ₽ достигается при сроке 5 мес и ставке ~15% (реальный платёж 20 760 ₽). Вы можете менять параметры, чтобы увидеть гибкий план.</div>
+        </div>
+
+        <!-- Сравнение переплаты МФО vs Банк -->
+        <div class="comparison" id="comparisonBlock"></div>
+    </section>
+
+    <!-- демо-форма (без "спасибо за внимание", только функциональная кнопка) -->
+    <div style="text-align: center; margin: 40px 0 60px;">
+        <button id="demoContactBtn" class="btn-outline" style="border-radius: 60px; padding: 14px 32px;"><i class="fas fa-envelope"></i> Связаться с банком (демо-заявка)</button>
+        <div id="demoMessage" style="margin-top: 16px; font-size: 0.9rem; color: #2b7a4b; min-height: 50px;"></div>
+    </div>
+</div>
+
+<script>
+    // Функция расчета аннуитетного платежа и построения графика
+    function calculateAmortization(amount, annualRate, months) {
+        const monthlyRate = annualRate / 100 / 12;
+        let payment = 0;
+        if (monthlyRate === 0) {
+            payment = amount / months;
+        } else {
+            const factor = Math.pow(1 + monthlyRate, months);
+            payment = amount * (monthlyRate * factor) / (factor - 1);
+        }
+        let balance = amount;
+        let schedule = [];
+        let totalInterest = 0;
+        for (let i = 1; i <= months; i++) {
+            const interestPayment = balance * monthlyRate;
+            const principalPayment = payment - interestPayment;
+            totalInterest += interestPayment;
+            balance -= principalPayment;
+            let finalBalance = balance < 0 ? 0 : balance;
+            schedule.push({
+                month: i,
+                payment: payment,
+                interest: interestPayment,
+                principal: principalPayment,
+                remainingBalance: finalBalance
+            });
+            balance = finalBalance;
+        }
+        if (schedule.length > 0 && schedule[schedule.length-1].remainingBalance > 0.01) {
+            let last = schedule[schedule.length-1];
+            let diff = last.remainingBalance;
+            last.principal += diff;
+            last.payment += diff;
+            last.remainingBalance = 0;
+            totalInterest += diff;
+        }
+        const totalPaid = payment * months;
+        const overpayment = totalPaid - amount;
+        return { schedule, payment, totalInterest, overpayment, totalPaid };
+    }
+
+    function renderTable(amount, annualRate, months) {
+        const result = calculateAmortization(amount, annualRate, months);
+        const schedule = result.schedule;
+        const payment = result.payment;
+        const overpaymentBank = result.overpayment;
+        
+        let html = `<div style="overflow-x: auto;"><table style="min-width: 500px;">
+            <thead>
+                <tr><th>Месяц</th><th>Платёж (₽)</th><th>Проценты (₽)</th><th>Погашение долга (₽)</th><th>Остаток долга (₽)</th></tr>
+            </thead><tbody>`;
+        for (let row of schedule) {
+            html += `<tr>
+                <td>${row.month}</td>
+                <td>${row.payment.toFixed(2)}</td>
+                <td>${row.interest.toFixed(2)}</td>
+                <td>${row.principal.toFixed(2)}</td>
+                <td>${Math.max(0, row.remainingBalance).toFixed(2)}</td>
+            </tr>`;
+        }
+        html += `</tbody></table></div>`;
+        html += `<div style="margin-top: 20px; background: #eef2fa; padding: 14px 20px; border-radius: 24px;">
+                    <strong><i class="fas fa-chart-pie"></i> Итоги кредита:</strong> Ежемесячный платёж ≈ ${payment.toFixed(2)} ₽ | 
+                    Общая переплата (проценты) = ${overpaymentBank.toFixed(2)} ₽ | 
+                    Всего выплат: ${(payment * schedule.length).toFixed(2)} ₽
+                 </div>`;
+        
+        const container = document.getElementById('amortization-table-container');
+        container.innerHTML = html;
+        // добавим класс анимации для таблицы
+        const tableDiv = container.querySelector('div:first-child');
+        if (tableDiv) tableDiv.classList.add('table-updated');
+        setTimeout(() => {
+            if (tableDiv) tableDiv.classList.remove('table-updated');
+        }, 500);
+        
+        // Сравнение с МФО
+        const mfoRateAnnual = 100;
+        const mfoMonths = months;
+        const mfoMonthlyRate = mfoRateAnnual / 100 / 12;
+        let mfoPayment = 0;
+        if (mfoMonthlyRate === 0) {
+            mfoPayment = amount / mfoMonths;
+        } else {
+            const factorMfo = Math.pow(1 + mfoMonthlyRate, mfoMonths);
+            mfoPayment = amount * (mfoMonthlyRate * factorMfo) / (factorMfo - 1);
+        }
+        const totalMfoPaid = mfoPayment * mfoMonths;
+        const overpaymentMfo = totalMfoPaid - amount;
+        const saving = overpaymentMfo - overpaymentBank;
+        const percentReduction = ((overpaymentMfo - overpaymentBank) / overpaymentMfo * 100).toFixed(1);
+        
+        let comparisonHtml = `
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px;">
+                <div><i class="fas fa-building"></i> <strong>💰 МФО (макс. 100% годовых)</strong><br>
+                Переплата за ${months} мес: <span style="font-size:1.3rem; font-weight:800;">${overpaymentMfo.toFixed(2)} ₽</span><br>
+                Ежемесячный платёж: ≈ ${mfoPayment.toFixed(2)} ₽
+                </div>
+                <div><i class="fas fa-university"></i> <strong>🏦 Банк (${annualRate}% годовых)</strong><br>
+                Переплата за ${months} мес: <span style="font-size:1.3rem; font-weight:800; color:#1e7e34;">${overpaymentBank.toFixed(2)} ₽</span><br>
+                Ежемесячный платёж: ≈ ${payment.toFixed(2)} ₽
+                </div>
+                <div><i class="fas fa-hand-holding-heart"></i> <strong>✅ Экономия</strong><br>
+                Вы экономите <strong style="color:#2b7a4b; font-size:1.2rem;">${saving.toFixed(2)} ₽</strong><br>
+                Снижение переплаты на ${percentReduction}%
+                </div>
+            </div>
+            <div class="text-small" style="margin-top: 12px;">*Сравнение актуально: МФО по закону с 2026 года не выше 100% годовых, но банк даёт ставку в разы ниже.</div>
+        `;
+        document.getElementById('comparisonBlock').innerHTML = comparisonHtml;
+        
+        // Проверка на близость к 20к
+        const existingNote = document.querySelector('.payment-note');
+        if (existingNote) existingNote.remove();
+        if (Math.abs(payment - 20000) < 3000) {
+            const noteDiv = document.createElement('div');
+            noteDiv.className = 'payment-note';
+            noteDiv.innerHTML = '<i class="fas fa-check-circle"></i> Платёж ~' + payment.toFixed(0) + ' ₽ — идеально соответствует плану "20к примерно"!';
+            container.appendChild(noteDiv);
+        }
+    }
+    
+    function refreshFromInputs() {
+        let amount = parseFloat(document.getElementById('loanAmount').value);
+        let rate = parseFloat(document.getElementById('interestRate').value);
+        let term = parseInt(document.getElementById('loanTerm').value);
+        if (isNaN(amount) || amount <= 0) amount = 100000;
+        if (isNaN(rate) || rate < 0) rate = 15;
+        if (isNaN(term) || term < 1) term = 5;
+        if (term > 36) term = 36;
+        document.getElementById('loanAmount').value = amount;
+        document.getElementById('interestRate').value = rate;
+        document.getElementById('loanTerm').value = term;
+        renderTable(amount, rate, term);
+    }
+    
+    const demoBtn = document.getElementById('demoContactBtn');
+    const demoMsgDiv = document.getElementById('demoMessage');
+    if (demoBtn) {
+        demoBtn.addEventListener('click', () => {
+            demoMsgDiv.innerHTML = '<i class="fas fa-check-circle"></i> Демо-заявка отправлена. Банк рассмотрит кандидата с чистой КИ и стабильным доходом.';
+            setTimeout(() => {
+                demoMsgDiv.innerHTML = '';
+            }, 4000);
+        });
+    }
+    
+    window.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('loanAmount').value = 100000;
+        document.getElementById('interestRate').value = 15;
+        document.getElementById('loanTerm').value = 5;
+        refreshFromInputs();
+        
+        const recalc = document.getElementById('recalcBtn');
+        if (recalc) recalc.addEventListener('click', refreshFromInputs);
+        
+        const inputs = ['loanAmount', 'interestRate', 'loanTerm'];
+        inputs.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('change', refreshFromInputs);
+        });
+    });
+</script>
+</body>
+</html>
